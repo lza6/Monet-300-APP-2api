@@ -1,0 +1,19 @@
+# 原始二进制 / 反编译中间产物（体积 + 版权，不入公开仓库）
+*.apk
+apktool_out/
+blutter_out/
+unzip/
+strings_libapp.txt
+
+# 未脱敏情报
+rc_current.json
+styles.local.json
+evidence/font_probe*.png
+evidence/var_*.png
+evidence/h2_only.png
+evidence/shot_*.png
+evidence/zoom_*.png
+
+__pycache__/
+*.pyc
+server_*.log

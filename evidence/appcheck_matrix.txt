@@ -1,0 +1,40 @@
+# Monet 3.0.0 probe — 2026-10-29 22:50:33
+# anonymous sign-up: 200 uid=4H2KTKPyIBXMdIYY8y8GAPSBbgy2
+v2app /status                    ver=3.0.0 appcheck=None         -> 401 'Unauthorized' fn-exec-id=None server=None
+v2app /status                    ver=3.0.0 appcheck=bogus-token  -> 503 'Service Unavailable' fn-exec-id=None server=None
+v2app /status                    ver=3.5.5 appcheck=None         -> 401 'Unauthorized' fn-exec-id=None server=None
+v2app /status                    ver=3.5.5 appcheck=bogus-token  -> 401 'Unauthorized' fn-exec-id=None server=None
+v2app /generate_without_lora     ver=3.0.0 appcheck=None         -> 503 'Service Unavailable' fn-exec-id=None server=None
+v2app /generate_without_lora     ver=3.0.0 appcheck=bogus-token  -> 401 'Unauthorized' fn-exec-id=None server=None
+v2app /definitely_not_a_route    ver=3.0.0 appcheck=None         -> 503 'Service Unavailable' fn-exec-id=None server=None
+v2app /definitely_not_a_route    ver=3.0.0 appcheck=bogus-token  -> 401 'Unauthorized' fn-exec-id=None server=None
+v2test /status                   ver=3.0.0 appcheck=None         -> 401 'Unauthorized' fn-exec-id=None server=None
+v2test /status                   ver=3.0.0 appcheck=bogus-token  -> 401 'Unauthorized' fn-exec-id=None server=None
+v2test /generate_without_lora    ver=3.0.0 appcheck=None         -> 503 'Service Unavailable' fn-exec-id=None server=None
+v2test /generate_without_lora    ver=3.0.0 appcheck=bogus-token  -> 401 'Unauthorized' fn-exec-id=None server=None
+mgmt /v1/rate                    ver=3.0.0 appcheck=None         -> 401 '{"message":"X-App-Id header is invalid!","error":"Unauthorized","statusCode":401}' fn-exec-id=None server=None
+mgmt /v1/rate                    ver=3.0.0 appcheck=bogus-token  -> 401 '{"message":"X-App-Id header is invalid!","error":"Unauthorized","statusCode":401}' fn-exec-id=None server=None
+mgmt /v1/feedback                ver=3.0.0 appcheck=None         -> 401 '{"message":"X-App-Id header is invalid!","error":"Unauthorized","statusCode":401}' fn-exec-id=None server=None
+mgmt /v1/feedback                ver=3.0.0 appcheck=bogus-token  -> 401 '{"message":"X-App-Id header is invalid!","error":"Unauthorized","statusCode":401}' fn-exec-id=None server=None
+
+# X-App-Id whitelist probe on management-api (Cloud Run)
+X-App-Id=None                               -> 401 '{"message":"X-App-Id header is missing!","error":"Unauthorized","statusCode":401}'
+X-App-Id=''                                 -> 401 '{"message":"X-App-Id header is missing!","error":"Unauthorized","statusCode":401}'
+X-App-Id='co.appnation.artgenerator'        -> 401 '{"message":"X-App-Id header is invalid!","error":"Unauthorized","statusCode":401}'
+X-App-Id='artgenerator'                     -> 401 '{"message":"X-App-Id header is invalid!","error":"Unauthorized","statusCode":401}'
+X-App-Id='monet'                            -> 401 '{"message":"X-App-Id header is invalid!","error":"Unauthorized","statusCode":401}'
+X-App-Id='Monet'                            -> 401 '{"message":"X-App-Id header is invalid!","error":"Unauthorized","statusCode":401}'
+
+# Cloud Functions name enumeration (404 = name free, 401 = exists + App Check gated)
+/v1           -> 404 'HTML-404'
+/v2           -> 404 'HTML-404'
+/api          -> 404 'HTML-404'
+/app          -> 404 'HTML-404'
+/v2app        -> 401 'Unauthorized'
+/v2test       -> 401 'Unauthorized'
+/v2prod       -> 404 'HTML-404'
+/v3app        -> 404 'HTML-404'
+/v2api        -> 404 'HTML-404'
+/generate     -> 404 'HTML-404'
+/webhook      -> 404 'HTML-404'
+/admin        -> 404 'HTML-404'

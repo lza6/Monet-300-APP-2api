@@ -1,0 +1,5 @@
+
+=== health : 2000 req / c=32 / 0.71s ===
+  ok=2000  failed=0  rps=2809.2
+  p50=2.2ms  p95=5.7ms  p99=13.8ms  max=655.6ms  avg=6.7ms
+  status histogram: {200: 2000}

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Monet 3.0.0 · 本地网关 Demo</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --line: #30363d; --fg: #e6edf3;
+    --dim: #8b949e; --accent: #58a6ff; --ok: #3fb950; --warn: #d29922; --bad: #f85149;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 14px/1.6 "Microsoft YaHei", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+         font-synthesis: none; }
+  header { padding: 18px 24px; border-bottom: 1px solid var(--line); display: flex;
+           align-items: center; gap: 14px; flex-wrap: wrap; }
+  h1 { font-size: 17px; margin: 0; font-weight: 600; }
+  .pill { font-size: 12px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line);
+          color: var(--dim); }
+  .pill.ok { color: var(--ok); border-color: #1a7f3722; background: #1a7f3711; }
+  .pill.warn { color: var(--warn); border-color: #d2992222; background: #d2992211; }
+  main { display: grid; grid-template-columns: 340px 1fr; gap: 20px; padding: 20px; align-items: start; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+  label { display: block; font-size: 12px; color: var(--dim); margin: 12px 0 4px; }
+  input, select, textarea, button { width: 100%; background: #0d1117; color: var(--fg);
+    border: 1px solid var(--line); border-radius: 7px; padding: 9px 11px; font: inherit; }
+  textarea { resize: vertical; min-height: 78px; }
+  button { cursor: pointer; border: none; background: var(--accent); color: #04121f;
+           font-weight: 600; margin-top: 16px; padding: 11px; }
+  button:disabled { opacity: .55; cursor: not-allowed; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  #grid figure { margin: 0; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; background: #0d1117; }
+  #grid img { width: 100%; display: block; }
+  #grid figcaption { font-size: 11px; color: var(--dim); padding: 6px 8px; word-break: break-all; }
+  #log { font: 12px/1.55 ui-monospace, Consolas, monospace; color: var(--dim);
+         background: #0d1117; border: 1px solid var(--line); border-radius: 7px;
+         padding: 10px; height: 168px; overflow: auto; white-space: pre-wrap; }
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; font-size: 12px; }
+  .stats div { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--line);
+               padding-bottom: 4px; color: var(--dim); }
+  .stats b { color: var(--fg); font-variant-numeric: tabular-nums; }
+  h2 { font-size: 13px; margin: 0 0 10px; color: var(--dim); font-weight: 600;
+       text-transform: uppercase; letter-spacing: .06em; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Monet 3.0.0 · 本地 OpenAI 兼容网关</h1>
+  <span class="pill" id="pill-mode">mode: …</span>
+  <span class="pill" id="pill-upstream">upstream: …</span>
+  <span class="pill" id="pill-ver">v3.0.0</span>
+</header>
+
+<main>
+  <section>
+    <h2>生成请求</h2>
+    <label for="prompt">Prompt</label>
+    <textarea id="prompt">a lighthouse on a cliff at dusk, dramatic sky</textarea>
+
+    <label for="style">风格（model）</label>
+    <select id="style"></select>
+
+    <div class="row">
+      <div>
+        <label for="n">n（1–4）</label>
+        <input id="n" type="number" min="1" max="4" value="1" />
+      </div>
+      <div>
+        <label for="size">size</label>
+        <select id="size">
+          <option>512x512</option>
+          <option selected>1024x1024</option>
+          <option>768x1344</option>
+          <option>1344x768</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="go">生成</button>
+
+    <label>健康状态</label>
+    <div class="stats" id="health"><div><span>status</span><b>…</b></div></div>
+
+    <label>压测统计</label>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section>
+    <h2>结果</h2>
+    <div id="grid"></div>
+    <label>日志</label>
+    <div id="log"></div>
+  </section>
+</main>
+
+<script>
+const logEl = document.getElementById('log');
+const gridEl = document.getElementById('grid');
+const goBtn = document.getElementById('go');
+
+function log(msg) {
+  const t = new Date().toLocaleTimeString();
+  logEl.textContent += `[${t}] ${msg}\n`;
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+async function refreshStatus() {
+  try {
+    const h = await (await fetch('/health')).json();
+    document.getElementById('pill-mode').textContent = 'mode: ' + h.mode;
+    document.getElementById('pill-mode').className = 'pill ' + (h.mode === 'mock' ? 'warn' : 'ok');
+    const up = document.getElementById('pill-upstream');
+    up.textContent = 'upstream: ' + h.upstream;
+    up.className = 'pill ' + (h.upstream === 'mock' ? 'warn' : 'ok');
+    document.getElementById('health').innerHTML =
+      `<div><span>status</span><b>${h.status}</b></div>` +
+      `<div><span>uptime</span><b>${h.uptime_s}s</b></div>` +
+      `<div><span>app_version</span><b>${h.app_version}</b></div>` +
+      `<div><span>base</span><b title="${h.base}">${h.base.replace('https://','').slice(0,22)}…</b></div>`;
+  } catch (e) { log('health 失败: ' + e); }
+
+  try {
+    const s = await (await fetch('/stats')).json();
+    document.getElementById('stats').innerHTML =
+      `<div><span>total</span><b>${s.total}</b></div>` +
+      `<div><span>ok / failed</span><b>${s.ok} / ${s.failed}</b></div>` +
+      `<div><span>p50</span><b>${s.p50_ms} ms</b></div>` +
+      `<div><span>p95</span><b>${s.p95_ms} ms</b></div>` +
+      `<div><span>p99</span><b>${s.p99_ms} ms</b></div>` +
+      `<div><span>mock 命中</span><b>${s.mock_served}</b></div>` +
+      (s.last_error ? `<div style="grid-column:1/-1"><span>last_error</span><b title="${s.last_error}">${s.last_error.slice(0,40)}…</b></div>` : '');
+  } catch (e) { /* ignore */ }
+}
+
+async function loadModels() {
+  const sel = document.getElementById('style');
+  try {
+    const r = await (await fetch('/v1/models')).json();
+    const base = r.data.find(m => m.id === 'monet-3.0.0');
+    const styles = r.data.filter(m => m.id.includes('/'));
+    sel.innerHTML = `<option value="monet-3.0.0">默认（无风格）</option>` +
+      styles.map(m => `<option value="${m.id}">${m.id.split('/')[1]}</option>`).join('');
+    log(`已加载 ${styles.length} 个风格模型（共 ${r.data.length} 条目）`);
+  } catch (e) { log('模型列表失败: ' + e); }
+}
+
+async function generate() {
+  const prompt = document.getElementById('prompt').value.trim();
+  if (!prompt) { log('prompt 为空'); return; }
+  const body = {
+    prompt,
+    n: Number(document.getElementById('n').value) || 1,
+    size: document.getElementById('size').value,
+    model: document.getElementById('style').value,
+  };
+  goBtn.disabled = true;
+  const t0 = performance.now();
+  log(`POST /v1/images/generations  n=${body.n} size=${body.size} model=${body.model}`);
+  try {
+    const res = await fetch('/v1/images/generations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    const ms = Math.round(performance.now() - t0);
+    if (!res.ok) {
+      log(`HTTP ${res.status} → ${data.error?.code || ''} ${data.error?.message || ''}`);
+    } else {
+      log(`200 OK · mode=${data.mode} · ${ms}ms · ${data.data.length} 张`);
+      for (const item of data.data) {
+        const fig = document.createElement('figure');
+        fig.innerHTML = `<img src="${item.url}" alt="result" loading="lazy" />
+          <figcaption>${item.url.split('?')[0].split('/').pop()}</figcaption>`;
+        gridEl.prepend(fig);
+      }
+    }
+  } catch (e) {
+    log('请求异常: ' + e);
+  } finally {
+    goBtn.disabled = false;
+    refreshStatus();
+  }
+}
+
+goBtn.addEventListener('click', generate);
+loadModels();
+refreshStatus();
+setInterval(refreshStatus, 3000);
+log('demo 就绪');
+</script>
+</body>
+</html>

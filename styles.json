@@ -1,0 +1,441 @@
+[
+  {
+    "name": "No Style",
+    "key": "noStyle",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": null,
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fnew%2Fv2%2Fno_style.svg?alt=media&token=REDACTED",
+    "samplePrompts": [
+      "Mountain sunrise with fine details",
+      "Reflective water at twilight",
+      "Detailed lion's mane in sunlight",
+      "Vintage car under golden hour",
+      "Majestic eagle soaring high"
+    ]
+  },
+  {
+    "name": "Realistic",
+    "key": "realistic",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": "high quality, realistic, 8k",
+    "negativePrompt": "cgi, cartoon, painting, illustration, (worst quality, low quality, normal quality:2)",
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Frealistic.jpg?alt=media&token=REDACTED",
+    "modelName": "SG161222/RealVisXL_V3.0",
+    "samplePrompts": [
+      "Mountain sunrise with fine details",
+      "Reflective water at twilight",
+      "Detailed lion's mane in sunlight",
+      "Vintage car under golden hour",
+      "Majestic eagle soaring high"
+    ]
+  },
+  {
+    "name": "Cinematic",
+    "key": "cinematic",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": "cinematic photograph, hollywood, camera effects, strong bokeh, sharp focus",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fcinematic.jpg?alt=media&token=REDACTED",
+    "samplePrompts": [
+      "Foggy cityscape under streetlights",
+      "Desert caravan at sunset glow",
+      "Epic medieval battle at dawn",
+      "Astronaut on a distant planet",
+      "Lonely diner in moonlight"
+    ]
+  },
+  {
+    "name": "Analog",
+    "key": "analog",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": "analog style",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fanalog.jpeg?alt=media&token=REDACTED",
+    "loras": [
+      {
+        "path": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/Lora%2FAnalog_Style.safetensors?alt=media&token=REDACTED",
+        "scale": 1
+      }
+    ],
+    "samplePrompts": [
+      "Forest path in soft focus",
+      "Vintage camera on rustic wood",
+      "Old letters and faded photographs",
+      "Retro diner, moody lighting",
+      "Classic car, grainy texture"
+    ]
+  },
+  {
+    "name": "Cyberpunk",
+    "key": "cyberpunk",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": "cyberpunk",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fcyberpunk.jpeg?alt=media&token=REDACTED",
+    "samplePrompts": [
+      "Neon-lit futuristic cityscape",
+      "Robot in a rain-soaked alley",
+      "Cybernetic eye, glowing details",
+      "High-tech gadgets, shadowy figures",
+      "Futuristic motorcycle, neon streaks"
+    ]
+  },
+  {
+    "name": "Illustration",
+    "key": "illustration",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": "illustration",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fillustration.jpeg?alt=media&token=REDACTED",
+    "samplePrompts": [
+      "Whimsical forest, watercolor",
+      "Dreamy castle, pencil sketch",
+      "Mythical creatures, vibrant colors",
+      "Old sailor, pen and ink",
+      "Enchanted garden, detailed illustration"
+    ]
+  },
+  {
+    "name": "Anime",
+    "key": "anime",
+    "type": "fal.ai",
+    "isPremium": true,
+    "stylePrompt": "anime style",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fanime.jpeg?alt=media&token=REDACTED",
+    "samplePrompts": [
+      "Schoolgirl with magical powers",
+      "Mecha robot in battle stance",
+      "Cherry blossoms, serene village",
+      "Heroic swordsman, dynamic action",
+      "Cute cafe, bustling city"
+    ]
+  },
+  {
+    "name": "Cartoon",
+    "key": "pixar",
+    "type": "fal.ai",
+    "isPremium": true,
+    "stylePrompt": "concentrating, pixar style",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fcartoon.jpeg?alt=media&token=REDACTED",
+    "loras": [
+      {
+        "path": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/Lora%2FPixar_Style.safetensors?alt=media&token=REDACTED",
+        "scale": 1
+      }
+    ],
+    "samplePrompts": [
+      "Wacky animals playing instruments",
+      "Superhero in exaggerated action",
+      "Funny monsters in a band",
+      "Quirky city, exaggerated features",
+      "Playful dog, vibrant park"
+    ]
+  },
+  {
+    "name": "Tattoo",
+    "key": "tattooStyle",
+    "type": "fal.ai",
+    "isPremium": true,
+    "stylePrompt": "tattoo",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Ftattoo.jpeg?alt=media&token=REDACTED",
+    "loras": [
+      {
+        "path": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/Lora%2FTattoo_Style.safetensors?alt=media&token=REDACTED",
+        "scale": 1
+      }
+    ],
+    "samplePrompts": [
+      "Mythical dragon, intricate lines",
+      "Phoenix rising, blackwork",
+      "Nautical scene, bold shading",
+      "Floral mandala, delicate shading",
+      "Skull with roses, fine details"
+    ]
+  },
+  {
+    "name": "Wallpaper",
+    "key": "Wallpaper",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": "high resolution, wallpaper",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fwallpaper.jpeg?alt=media&token=REDACTED",
+    "loras": [
+      {
+        "path": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/Lora%2FWallpaper.safetensors?alt=media&token=REDACTED",
+        "scale": 1
+      }
+    ],
+    "samplePrompts": [
+      "Abstract geometric shapes, vibrant",
+      "Tranquil forest, serene colors",
+      "Space nebula, cosmic wonder",
+      "Floral patterns, soft pastels",
+      "Ocean waves, calming gradient"
+    ]
+  },
+  {
+    "name": "Neon",
+    "key": "neon",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": "neon style",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fneon.jpeg?alt=media&token=REDACTED",
+    "samplePrompts": [
+      "Glowing jellyfish, deep sea",
+      "Neon skyline, reflective puddles",
+      "Vibrant neon cocktails, nightlife",
+      "Electric guitar, neon glow",
+      "Neon signs, rainy street"
+    ]
+  },
+  {
+    "name": "Pixel Art",
+    "key": "pixelArt",
+    "type": "fal.ai",
+    "isPremium": true,
+    "stylePrompt": "pixel art",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fpixel_art.jpeg?alt=media&token=REDACTED",
+    "loras": [
+      {
+        "path": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/Lora%2FPixel_Art.safetensors?alt=media&token=REDACTED",
+        "scale": 1
+      }
+    ],
+    "samplePrompts": [
+      "Pixelated castle at dawn",
+      "Retro video game characters",
+      "Pixel forest adventure scene",
+      "8-bit superhero in action",
+      "Pixelated spaceship, asteroid field"
+    ]
+  },
+  {
+    "name": "Isometric",
+    "key": "isometric",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": "isometric style",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fisomteric.jpeg?alt=media&token=REDACTED",
+    "loras": [
+      {
+        "path": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/Lora%2FIsometric.safetensors?alt=media&token=REDACTED",
+        "scale": 1
+      }
+    ],
+    "samplePrompts": [
+      "Isometric city block, bustling",
+      "Fantasy village, isometric view",
+      "Isometric office, detailed interior",
+      "Isometric park with picnickers",
+      "Tech gadgets, isometric layout"
+    ]
+  },
+  {
+    "name": "GTA",
+    "key": "gta",
+    "type": "fal.ai",
+    "isPremium": true,
+    "stylePrompt": "GTA 5 style",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fgta.jpeg?alt=media&token=REDACTED",
+    "samplePrompts": [
+      "Underwater city with glowing coral",
+      "Astronaut on a neon skateboard",
+      "Sunset over a crystal lake",
+      "Fireflies in an enchanted forest",
+      "Dragon perched atop a snowy mountain",
+      "Pirate ship sailing through stormy seas",
+      "Phoenix rising from ashes",
+      "Futuristic city with flying cars",
+      "Mermaids at a coral reef party",
+      "Wizards dueling in a magic tournament",
+      "Giant robot in a post-apocalyptic city"
+    ]
+  },
+  {
+    "name": "T-Shirt Design",
+    "key": "tShirtDesign",
+    "type": "fal.ai",
+    "isPremium": true,
+    "stylePrompt": "digital printing on t-shirt, t-shirt design photo",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Ft_shirt_design.jpeg?alt=media&token=REDACTED",
+    "loras": [
+      {
+        "path": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/Lora%2FTshirt_Style.safetensors?alt=media&token=REDACTED",
+        "scale": 1
+      }
+    ],
+    "samplePrompts": [
+      "Rock band, vintage logo",
+      "Inspirational quote, stylish font",
+      "Wild animals, tribal patterns",
+      "Retro sunset, silhouette design",
+      "Adventure theme, mountain graphic"
+    ]
+  },
+  {
+    "name": "Past Life",
+    "key": "pastLife",
+    "type": "fal.ai",
+    "isPremium": true,
+    "stylePrompt": "thm style, fantastical realism, distant picture, full body shot, detailed land, apocalyptic world, fantasy",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fpast_life.jpeg?alt=media&token=REDACTED",
+    "loras": [
+      {
+        "path": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/Lora%2FPixar_Style.safetensors?alt=media&token=REDACTED",
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "name": "Signature",
+    "key": "signature",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": "signature, a signature in the middle, signature design, signature style, black color signature, white background",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/0000utils%2Fstyleitems%2Ftattoo%20(4).png?alt=media&token=REDACTED",
+    "samplePrompts": [
+      "Bold initials, sleek lines",
+      "Elegant cursive, flowing style",
+      "Minimalist design, sharp edges",
+      "Classic serif font, timeless look",
+      "Modern calligraphy, artistic flair"
+    ]
+  },
+  {
+    "name": "Food",
+    "key": "foodDesign",
+    "type": "fal.ai",
+    "isPremium": true,
+    "stylePrompt": "delicious, appetizing",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Ffood.jpeg?alt=media&token=REDACTED",
+    "loras": [
+      {
+        "path": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/Lora%2FFood_Style.safetensors?alt=media&token=REDACTED",
+        "scale": 1
+      }
+    ],
+    "samplePrompts": [
+      "Sizzling steak, grill marks",
+      "Fresh sushi platter, detailed",
+      "Cupcakes with colorful icing",
+      "Artisanal coffee, steam swirls",
+      "Fresh fruits, dew drops"
+    ]
+  },
+  {
+    "name": "Low Poly",
+    "key": "lowPoly",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": "low poly",
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Flow-poly.jpeg?alt=media&token=REDACTED",
+    "samplePrompts": [
+      "Low poly mountain landscape",
+      "Abstract low poly animal",
+      "Low poly cityscape at dusk",
+      "Polygonal spaceship, star background",
+      "Low poly forest, foggy morning"
+    ]
+  },
+  {
+    "name": "Creepy",
+    "key": "creepy",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": "creepy character",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fcreepy.jpeg?alt=media&token=REDACTED",
+    "loras": [
+      {
+        "path": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/Lora%2FCreepy_Style.safetensors?alt=media&token=REDACTED",
+        "scale": 1
+      }
+    ],
+    "samplePrompts": [
+      "Abandoned asylum, eerie glow",
+      "Creepy forest, foggy night",
+      "Haunted house, ghostly figures",
+      "Sinister clown, shadowy corner",
+      "Gothic castle, full moon"
+    ]
+  },
+  {
+    "name": "Logo",
+    "key": "logo",
+    "type": "fal.ai",
+    "isPremium": true,
+    "stylePrompt": "logo design",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Flogo.jpeg?alt=media&token=REDACTED",
+    "loras": [
+      {
+        "path": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/Lora%2FLogo_Style.safetensors?alt=media&token=REDACTED",
+        "scale": 1
+      }
+    ],
+    "samplePrompts": [
+      "Minimalist fox, sleek design",
+      "Eco-friendly brand, leaf motif",
+      "Tech startup, futuristic icon",
+      "Coffee shop, warm emblem",
+      "Athletic gear, dynamic symbol"
+    ]
+  },
+  {
+    "name": "Package Design",
+    "key": "foodDesign",
+    "type": "fal.ai",
+    "isPremium": true,
+    "stylePrompt": "package design, simple background, food focus, still life <lora:package_design_v1:0.7>",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Fpackage_design.jpeg?alt=media&token=REDACTED",
+    "samplePrompts": [
+      "Organic tea, eco-friendly packaging",
+      "Artisanal chocolates, elegant box",
+      "Gourmet pasta, vibrant wrap",
+      "Craft beer, unique label",
+      "Handmade soap, rustic packaging"
+    ]
+  },
+  {
+    "name": "Funko Pop",
+    "key": "funkoPop",
+    "type": "fal.ai",
+    "isPremium": false,
+    "stylePrompt": "Funko Pop",
+    "negativePrompt": null,
+    "mediaUrl": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/style_images%2Fv2%2Ffunko_pop.jpeg?alt=media&token=REDACTED",
+    "loras": [
+      {
+        "path": "https://firebasestorage.googleapis.com/v0/b/art-generator-e907c.appspot.com/o/Lora%2FFunko_Style.safetensors?alt=media&token=REDACTED",
+        "scale": 1
+      }
+    ],
+    "samplePrompts": [
+      "Superhero, oversized head figure",
+      "Fantasy wizard, collectible figure",
+      "Famous singer, iconic outfit",
+      "Historic figure, caricature style",
+      "Video game character, iconic pose"
+    ]
+  }
+]
